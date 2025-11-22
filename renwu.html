@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Characters</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=cinzel:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap');
+        body{
+            background-image: url(img/background.jpg);width: 100%;
+        }
+        *{
+           margin: auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+         .guide{
+            height: 75px;
+            margin: auto;
+            background-color: #8c092f;height: 75px;
+        }
+        li{
+            width: 20%;
+            float: left;
+            font-size: 55px;
+            text-align: center;
+            height: 75px;
+            line-height: 75px;
+            list-style: none;
+        }
+        li a{
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Pacifico',cursive;
+            font-weight: bold;
+        }
+        li:hover{
+        background-color: #cc0d55;
+        }
+        .current{
+            background-color: #cc0d55;
+        }
+        p{
+            color: #fff;
+            font-size: 30px;
+        }
+        .content{
+            padding: 0px;
+        }
+        .v{
+            float: left;
+            width:  50%;
+        }
+        .e{
+            float: right;
+            width: 50%;
+        }
+        .search{
+            height: 40px;
+            line-height: 40px;
+            width: 80%;
+            display: flex;
+            margin: 20px auto;
+        }
+        #nameInput{
+            background-color: #8c092f;
+            color: #fff;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            width: 600px;
+            font-size: 35px;
+            font-family: 'Pacifico',cursive;
+        }
+        .a{
+            background-color: #8c092f;
+            color: #fff;
+            font-size: 25px;
+            height: 60px;
+            line-height: 60px;
+            transition: background-color 0.3;
+            font-family: 'Cinzel','Simsun',serif;
+        }
+        #result{
+            font-size: 40px;
+            background-color: #cc0d55;
+            padding: 20px;
+            width: 80%;
+            color: #fff;
+            font-family: 'Cinzel','Simsun',serif;
+        }
+        .v biao{
+            float: left;
+        }
+        .e biao{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="Rusty Lake"><img src="img/logo.jpg" border="0" width="100%"></div>
+     <div class="guide">
+          <ul>  
+            <li><a href="first.html">工作室</a></li>
+            <li><a href="jvqing.html">剧情</a></li>
+            <li class="current"><a href="renwu.html">人物</a></li>
+            <li><a href="erchuang.html">二创</a></li>
+            <li><a href="xiazai.html">下载</a></li>
+          </ul>
+    </div>
+    <div class="content">
+        <div class="v">
+            <img src="img/V.jpg" width="100%"> 
+        </div>
+        <div class="e">
+            <img src="img/E.jpg" width="100%">
+        </div>
+        <div>
+            <div class="search">
+                <input type="text" id="nameInput" placeholder="输入人物英文名">
+                <button onclick="searchCharacter()" class="a">查询人物命运</button>
+            </div>
+            <div id="result"><p>正在查询中.....</p></div>
+        </div>
+    </div>
+            <script>
+        let characters = ["Emma", "Samuel", "Ida", "Leonard", "Albert", "Frank", "Rose", "Jakob", "Caroline", "Nicholas","William","Gerard","David","Elizabeth","Aldous","Mary","James","Laura","Bob","Maragaret","Mr.Crow","Mr.Owl","Harvey","Mr.Deer","Mr.Boar","Mr.Rabbit","Miss.Pheasant"];
+        let endings = [
+            "寻找儿子无果，绝望自杀，眼泪被取下。",
+            "Albert学会了巫术，给Samuel和Ida用巫毒娃娃下了诅咒，Samuel右眼被取下",
+            "Albert学会了巫术，给Samuel和Ida用巫毒娃娃下了诅咒，Ida左眼被取下",
+            "在战争中被地雷炸伤，失去了右脚",
+            "和Frank下象棋，Frank赢了Albert并将他杀害，Albert的大脑被取出",
+            "在房子里洗热水澡，修理了自己的毛发，一缕头发被保存起来，莱纳德、Frank、Rose三人在地下室里献祭了自己和家族成员的血肉，巨大的树根吸收了所有的养分，产生了一个婴儿，之后Rose带着这个婴儿离开了锈湖，这个婴儿就是日后的《逃离方块》系列的女主Laura",
+            "Frank和Rose在房子内共舞，Rose在调第二首曲子时换上了黄绿碎花裙子（即《逃离方块》系列中Laura穿的裙子），Laura的手划破取出了血，莱纳德、Frank、Rose三人在地下室里献祭了自己和家族成员的血肉，巨大的树根吸收了所有的养分，产生了一个婴儿，之后Rose带着这个婴儿离开了锈湖，这个婴儿就是日后的《逃离方块》系列的女主Laura",
+            "家中长子，少时被母亲送出天堂岛，长大后受到父亲来信回到故乡，面对诡异的十灾和虎视眈眈的父亲，雅各布破解了母亲留下的笔记，揭开了永生的谜题，转世为Mr.Owl",
+            "是Jakob的母亲，领悟了天堂岛永生的奥秘并留下了笔记，为保护大儿子将其送出天堂岛并牺牲",
+            "是Jakob的父亲，追求永生，发现天堂岛的神秘力量后决定献祭自己的大儿子Jakob，但妻子主动献祭未获得永生，儿子成年后将其叫回天堂岛图谋不轨，转世为Mr.Deer",
+            "和自己的哥哥一起研发长生不老密药，被哥哥哄骗先行喝下药，然后死亡，在Rose的帮助下转生成Laura",
+            "是Jakob的舅舅，是迫害Jakob的凶手之一，转世为Mr.Boar",
+            "是Jakob的弟弟，会变魔术，是迫害Jakob的凶手之一，转世为Mr.Robbit",
+            "Jakob的妹妹，是迫害Jakob的凶手之一，转世为Miss.Pheasant",
+            "是William的哥哥，哄骗弟弟喝下长生药后转生为Mr.Crow",
+            "是James妻子，三个孩子长大后正常死亡",
+            "William的侄子，收到舅舅来信后搬入别墅，开启了这场以三代幸福为牺牲品的献祭",
+            "锈湖系列游戏的女主，幼时母亲Rose被饿鬼带走，找回母亲途中第一次接触到锈湖，长大后和Bob恋爱，后因抑郁症自杀",
+            "是Laura的男友，分手后一蹶不振，患病失忆来到了Laura提起过的白门心理健康和钓鱼中心",
+            "是Jakob的奶奶，是是迫害Jakob的凶手之一，转世为Miss.Pigeon",
+            "是锈湖旅馆的二把手，主掌着锈湖的神秘力量",
+            "是锈湖旅馆的一把手，在杀害自己的亲人的转世入住旅馆时让Harvey将其逐个杀害",
+            "被玩家称为最强打工人，在锈湖系列游戏中多次出现",
+            "是Jakob的父亲的转世，被Harvey下毒杀害",
+            "是Jakob的舅舅的转世，Havery在他的三明治中放屎，在其上厕所时布置机关，让墙上的斧头掉落将其杀害",
+            "是Jakob的弟弟的转世，给Havery表演魔术时发生意外而亡",
+            "是Jakob的妹妹的转世，Havery给她拍照时举枪自杀",
+        ];
+
+        function searchCharacter() {
+            const nameInput = document.getElementById('nameInput');
+            const resultDiv = document.getElementById('result');
+            const searchName = nameInput.value;
+            
+            const characterIndex = characters.findIndex(char =>char.toLocaleLowerCase()=== searchName.toLocaleLowerCase()
+        );
+             
+            if (characterIndex != -1) {
+                resultDiv.innerHTML = `${endings[characterIndex]}`;
+            } 
+        }
+    </script>
+    <div>
+        <audio controls autoplay loop><source src="Victor Butzelaar - Rusty Lake Family Tune.mp3" type="audio/mpeg"></audio>
+    </div>
+    </div>
+</body>
+</html>
